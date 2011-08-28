@@ -1,0 +1,3 @@
+[submodule ".emacs.d/site-lisp/auctex"]
+	path = .emacs.d/site-lisp/auctex
+	url = git://github.com/eschulte/auctex.git
