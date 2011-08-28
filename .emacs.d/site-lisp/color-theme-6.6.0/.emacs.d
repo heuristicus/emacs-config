@@ -1,0 +1,1 @@
+/home/michal/Dropbox/config_files/emacs/.emacs.d/
