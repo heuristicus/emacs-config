@@ -15,6 +15,9 @@
 (require 'color-theme-custom)
 (require 'latex-custom)
 (require 'keybind-custom)
+(require 'rainbow-delimiters)
+(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+
 
 ;; Inhibit displaying stuff at startup
 (setq inhibit-splash-screen t)
