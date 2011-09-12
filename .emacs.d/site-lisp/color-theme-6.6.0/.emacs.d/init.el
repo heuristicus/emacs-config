@@ -9,18 +9,11 @@
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/color-theme-6.6.0/"))
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auctex"))
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auctex/preview"))
-(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/anthy")) 
 
 ;; Load customised stuff
 (require 'ido-custom)
 (require 'color-theme-custom)
 (require 'latex-custom)
-(require 'keybind-custom)
-(require 'anthy-custom)
-
-(require 'rainbow-delimiters)
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-
 
 ;; Inhibit displaying stuff at startup
 (setq inhibit-splash-screen t)
@@ -31,4 +24,3 @@
 
 ;; Set colour theme and start the emacs server
 (color-theme-zenburn)
-(server-start)
