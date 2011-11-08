@@ -34,7 +34,7 @@
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'haskell-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'python-mode-hook 'rainbow-delimiters-mode)
-(add-hood 'c-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'c-mode-hook 'rainbow-delimiters-mode)
 
 ;; Inhibit displaying stuff at startup
 (setq inhibit-splash-screen t)
