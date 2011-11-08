@@ -10,6 +10,10 @@
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auctex"))
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auctex/preview"))
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/anthy")) 
+(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auto-complete-1.3.1"))
+
+;; Load modules
+
 
 ;; Load customised stuff
 (require 'ido-custom)
@@ -18,10 +22,19 @@
 (require 'keybind-custom)
 (require 'anthy-custom)
 
+;; auto-complete mode
+(require 'auto-complete)
+(add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
+(add-hook 'python-mode-hook 'auto-complete-mode)
+(add-hook 'haskell-mode-hook 'auto-complete-mode)
+(add-hook 'c-mode-hook 'auto-complete-mode)
+
+;; Rainbow delimiters
 (require 'rainbow-delimiters)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'haskell-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'python-mode-hook 'rainbow-delimiters-mode)
+(add-hood 'c-mode-hook 'rainbow-delimiters-mode)
 
 ;; Inhibit displaying stuff at startup
 (setq inhibit-splash-screen t)
