@@ -1,0 +1,9 @@
+[submodule ".emacs.d/site-lisp/auctex"]
+	path = .emacs.d/site-lisp/auctex
+	url = git://github.com/eschulte/auctex.git
+[submodule ".emacs.d/site-lisp/yasnippet"]
+	path = .emacs.d/site-lisp/yasnippet
+	url = git://github.com/capitaomorte/yasnippet.git
+[submodule ".emacs.d/site-lisp/auto-complete"]
+	path = .emacs.d/site-lisp/auto-complete
+	url = git://github.com/m2ym/auto-complete.git
