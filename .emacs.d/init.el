@@ -10,10 +10,8 @@
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auctex"))
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auctex/preview"))
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/anthy")) 
-(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auto-complete-1.3.1"))
-
-;; Load modules
-
+(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auto-complete"))
+(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/yasnippet"))
 
 ;; Load customised stuff
 (require 'ido-custom)
@@ -21,6 +19,14 @@
 (require 'latex-custom)
 (require 'keybind-custom)
 (require 'anthy-custom)
+
+;; yasnippet
+(require 'yasnippet)
+(yas/global-mode 1)
+
+;; pymacs
+(require 'pymacs)
+(pymacs-load "ropemacs" "rope-")
 
 ;; auto-complete mode
 (require 'auto-complete)
@@ -35,6 +41,7 @@
 (add-hook 'haskell-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'python-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'c-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'java-mode-hook 'rainbow-delimiters-mode)
 
 ;; Inhibit displaying stuff at startup
 (setq inhibit-splash-screen t)
@@ -43,6 +50,11 @@
 (if (eq window-system 'x)
     (set-default-font "Inconsolata-10"))
 
-;; Set colour theme and start the emacs server
+;; Set colour theme
 (color-theme-zenburn)
+
+;; cursor customisations
+(blink-cursor-mode nil)
+
+;; Start emacs server
 (server-start)
