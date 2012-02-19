@@ -20,13 +20,17 @@
 (require 'keybind-custom)
 (require 'anthy-custom)
 
+;; autopair
+(require 'autopair)
+(autopair-global-mode)
+
 ;; yasnippet
 (require 'yasnippet)
 (yas/global-mode 1)
 
 ;; pymacs
-(require 'pymacs)
-(pymacs-load "ropemacs" "rope-")
+; (require 'pymacs)
+; (pymacs-load "ropemacs" "rope-")
 
 ;; auto-complete mode
 (require 'auto-complete)
