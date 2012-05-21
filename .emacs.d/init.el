@@ -22,7 +22,12 @@
 
 ;; autopair
 (require 'autopair)
-(autopair-global-mode)
+(add-hook 'emacs-lisp-mode-hook 'autopair-mode)
+(add-hook 'haskell-mode-hook 'autopair-mode)
+(add-hook 'python-mode-hook 'autopair-mode)
+(add-hook 'c-mode-hook 'autopair-mode)
+(add-hook 'java-mode-hook 'autopair-mode)
+; (add-hook 'TeX-mode-hook 'autopair-mode)
 
 ;; yasnippet
 (require 'yasnippet)
@@ -46,6 +51,13 @@
 (add-hook 'python-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'c-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'java-mode-hook 'rainbow-delimiters-mode)
+
+;; Spell checking
+(setq ispell-program-name "aspell"
+  ispell-extra-args '("--sug-mode=ultra"))
+(add-hook 'org-mode-hook (lambda()(flyspell-mode 1)))
+(add-hook 'latex-mode-hook (lambda()(flyspell-mode 1)))
+(add-hook 'text-mode-hook (lambda()(flyspell-mode 1)))
 
 ;; Inhibit displaying stuff at startup
 (setq inhibit-splash-screen t)
