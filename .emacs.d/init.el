@@ -19,6 +19,8 @@
 (require 'latex-custom)
 (require 'keybind-custom)
 (require 'anthy-custom)
+(require 'fonts-custom)
+(require 'extras-custom) ; transparency
 
 ;; autopair
 (require 'autopair)
@@ -71,6 +73,12 @@
 
 ;; cursor customisations
 (blink-cursor-mode nil)
+
+;; AUCTeX evince viewer
+
+(setq TeX-output-view-style
+      (quote
+       (("^pdf$" "." "evince %o"))))
 
 ;; Start emacs server
 (server-start)
