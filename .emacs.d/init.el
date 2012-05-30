@@ -12,6 +12,8 @@
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/anthy")) 
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auto-complete"))
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/yasnippet"))
+(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/rainbow-delimiters"))
+(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/autocomplete"))
 
 ;; Load customised stuff
 (require 'ido-custom)
