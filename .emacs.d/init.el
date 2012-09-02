@@ -13,17 +13,20 @@
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auto-complete"))
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/yasnippet"))
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/rainbow-delimiters"))
-(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/autocomplete"))
+(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/autopair"))
+(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/word-count"))
 
 ;; Load customised stuff
 (require 'ido-custom)
 (require 'color-theme-custom)
 (require 'latex-custom)
 (require 'keybind-custom)
-(require 'anthy-custom)
+(require 'jp-input-custom)
 (require 'fonts-custom)
 (require 'extras-custom) ; transparency
 
+;; word-count
+(require 'word-count)
 ;; autopair
 (require 'autopair)
 (add-hook 'emacs-lisp-mode-hook 'autopair-mode)
@@ -68,10 +71,6 @@
 
 ;; Inhibit displaying stuff at startup
 (setq inhibit-splash-screen t)
-
-;; Set default font for everything.
-(if (eq window-system 'x)
-    (set-default-font "Inconsolata-10"))
 
 ;; Set colour theme
 (color-theme-zenburn)
