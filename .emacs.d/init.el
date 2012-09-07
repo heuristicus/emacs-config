@@ -15,8 +15,10 @@
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/rainbow-delimiters"))
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/autopair"))
 (add-to-list 'load-path (concat dotfiles-dir "/site-lisp/word-count"))
+(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/smart-compile"))
 
 ;; Load customised stuff
+(add-to-list 'load-path (concat dotfiles-dir "/custom"))
 (require 'ido-custom)
 (require 'color-theme-custom)
 (require 'latex-custom)
@@ -24,6 +26,7 @@
 (require 'jp-input-custom)
 (require 'fonts-custom)
 (require 'extras-custom) ; transparency
+(require 'programming-custom)
 
 ;; word-count
 (require 'word-count)
