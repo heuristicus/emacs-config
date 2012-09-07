@@ -12,7 +12,7 @@
 (global-set-key (kbd "C-M-S-p") 'forward-list)
 (global-set-key (kbd "C-M-S-b") 'backward-sexp)
 (global-set-key (kbd "C-M-S-f") 'forward-sexp)
-
-
+(global-set-key (kbd "C-S-a") 'move-beginning-of-line)
+(global-set-key (kbd "C-S-e") 'move-end-of-line)
 
 (provide 'keybind-custom)
