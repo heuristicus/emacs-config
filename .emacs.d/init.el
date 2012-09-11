@@ -52,6 +52,7 @@
 
 ;; auto-complete mode
 (require 'auto-complete)
+(setq-default ac-sources '(ac-source-yasnippet 'ac-source-semantic 'ac-source-words-in-buffer 'ac-source-words-in-same-mode-buffers))
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 (add-hook 'python-mode-hook 'auto-complete-mode)
 (add-hook 'haskell-mode-hook 'auto-complete-mode)
@@ -64,6 +65,7 @@
 (add-hook 'python-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'c-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'java-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'latex-mode-hook 'rainbow-delimiters-mode)
 
 ;; Spell checking
 (setq ispell-program-name "aspell"
