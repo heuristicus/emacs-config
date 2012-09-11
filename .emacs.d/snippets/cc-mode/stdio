@@ -1,0 +1,4 @@
+# name: stdio.h
+# key: #st
+# --
+#include <stdio.h>
