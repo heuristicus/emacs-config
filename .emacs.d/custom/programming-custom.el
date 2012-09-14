@@ -7,6 +7,6 @@
 
 (add-to-list 'smart-compile-alist '("\\.c$" . "gcc -Wall -o %n %f"))
 
-(add-hook 'c-mode-hook 'my-c-hook)
+(add-hook 'c-mode-common-hook 'my-c-hook)
 
 (provide 'programming-custom)

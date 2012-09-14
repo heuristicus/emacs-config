@@ -6,19 +6,22 @@
 ;; Add the directory containing .el files to the load path
 (setq dotfiles-dir (expand-file-name "~/.emacs.d"))
 (add-to-list 'load-path dotfiles-dir)
-(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/color-theme-6.6.0/"))
-(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auctex"))
-(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auctex/preview"))
-(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/anthy")) 
-(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/auto-complete"))
-(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/yasnippet"))
-(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/rainbow-delimiters"))
-(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/autopair"))
-(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/word-count"))
-(add-to-list 'load-path (concat dotfiles-dir "/site-lisp/smart-compile"))
+(add-to-list 'load-path (concat dotfiles-dir "/custom"))
+(let ((default-directory "~/.emacs.d/site-lisp/"))
+      (normal-top-level-add-to-load-path '("color-theme-6.6.0/"
+					   "auctex"
+					   "auctex/preview"
+					   "anthy" 
+					   "auto-complete"
+					   "yasnippet"
+					   "rainbow-delimiters"
+					   "autopair"
+					   "word-count"
+					   "smart-compile"
+					   "cedet")))
 
 ;; Load customised stuff
-(add-to-list 'load-path (concat dotfiles-dir "/custom"))
+
 (require 'ido-custom)
 (require 'color-theme-custom)
 (require 'latex-custom)
@@ -28,21 +31,30 @@
 (require 'extras-custom) ; transparency
 (require 'programming-custom)
 
+;; abbrevs
+(setq abbrev-file-name "~/.emacs.d/custom/abbrevs")
+(quietly-read-abbrev-file)
+(dolist (abbr-hook '(org-mode-hook
+		     text-mode-hook))
+  (add-hook abbr-hook (lambda () (abbrev-mode 1))))
+
 ;; word-count
 (require 'word-count)
+
 ;; autopair
 (require 'autopair)
-(add-hook 'emacs-lisp-mode-hook 'autopair-mode)
-(add-hook 'haskell-mode-hook 'autopair-mode)
-(add-hook 'python-mode-hook 'autopair-mode)
-(add-hook 'c-mode-hook 'autopair-mode)
-(add-hook 'java-mode-hook 'autopair-mode)
-; (add-hook 'TeX-mode-hook 'autopair-mode)
+(dolist (ap-hook '(emacs-lisp-mode-hook
+		   haskell-mode-hook 
+		   python-mode-hook 
+		   c-mode-hook 
+		   java-mode-hook))
+  (add-hook ap-hook 'autopair-mode))
+
 
 ;; yasnippet
 (require 'yasnippet)
 (yas/initialize)
-(setq yas/snippet-dirs (concat dotfiles-dir "/site-lisp/yasnippet/snippets"))
+(setq yas-snippet-dirs '( "~/.emacs.d/site-lisp/yasnippet/snippets" "~/.emacs.d/snippets"))
 (yas/global-mode 1)
 
 
@@ -50,22 +62,24 @@
 ; (require 'pymacs)
 ; (pymacs-load "ropemacs" "rope-")
 
+;; cedet
+;(load-file (concat dotfiles-dir "/site-lisp/cedet/cedet-1.1/common/cedet.el"))
+;(require 'semantic-gcc)
+;(semantic-load-enable-code-helpers)
+
 ;; auto-complete mode
-(require 'auto-complete)
-(setq-default ac-sources '(ac-source-yasnippet 'ac-source-semantic 'ac-source-words-in-buffer 'ac-source-words-in-same-mode-buffers))
-(add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
-(add-hook 'python-mode-hook 'auto-complete-mode)
-(add-hook 'haskell-mode-hook 'auto-complete-mode)
-(add-hook 'c-mode-hook 'auto-complete-mode)
+(require 'auto-complete-custom)
 
 ;; Rainbow delimiters
 (require 'rainbow-delimiters)
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'haskell-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'python-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'c-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'java-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'latex-mode-hook 'rainbow-delimiters-mode)
+(dolist (rainbow-hook '(emacs-lisp-mode-hook 
+			haskell-mode-hook 
+			python-mode-hook 
+			c-mode-hook 
+			java-mode-hook 
+			latex-mode-hook ))
+  (add-hook rainbow-hook 'rainbow-delimiters-mode))
+
 
 ;; Spell checking
 (setq ispell-program-name "aspell"
@@ -81,7 +95,7 @@
 (color-theme-zenburn)
 
 ;; cursor customisations
-(blink-cursor-mode nil)
+(blink-cursor-mode 0)
 
 ;; AUCTeX evince viewer
 (setq TeX-output-view-style
