@@ -1,5 +1,0 @@
-(define-abbrev-table 'org-mode-abbrev-table 
-  '(
-    ("wtop" 
-     "\t| 熟語 | 読み | 英語 |\n|------+------+------|\n|      |      |      |" nil 1)
-    ))
