@@ -46,7 +46,7 @@
 (dolist (ap-hook '(emacs-lisp-mode-hook
 		   haskell-mode-hook 
 		   python-mode-hook 
-		   c-mode-hook 
+		   c-mode-common-hook 
 		   java-mode-hook))
   (add-hook ap-hook 'autopair-mode))
 
@@ -69,13 +69,21 @@
 
 ;; auto-complete mode
 (require 'auto-complete-custom)
+(dolist (ac-hook '(emacs-lisp-mode-hook 
+		   haskell-mode-hook 
+		   python-mode-hook 
+		   c-mode-hook 
+		   java-mode-hook 
+		   latex-mode-hook))
+  (add-hook ac-hook 'auto-complete-mode))
+
 
 ;; Rainbow delimiters
 (require 'rainbow-delimiters)
 (dolist (rainbow-hook '(emacs-lisp-mode-hook 
 			haskell-mode-hook 
 			python-mode-hook 
-			c-mode-hook 
+			c-mode-common-hook 
 			java-mode-hook 
 			latex-mode-hook ))
   (add-hook rainbow-hook 'rainbow-delimiters-mode))

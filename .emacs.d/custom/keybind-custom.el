@@ -3,7 +3,8 @@
 (global-set-key (kbd "<f2> R") 'query-replace)
 (global-set-key (kbd "<f2> e") 'eval-buffer)
 (global-set-key (kbd "C-c c") 'smart-compile)
-
+(global-set-key (kbd "C-c - C-c") 'uncomment-region)
+(global-set-key (kbd "C-c s") 'shell)
 ;; dirty fix for ctrl-replaced caps key setting marks with these commands
 (global-set-key (kbd "C-S-n") 'next-line)
 (global-set-key (kbd "C-S-p") 'previous-line)
