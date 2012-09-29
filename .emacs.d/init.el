@@ -1,5 +1,5 @@
 ;; Turn off mouse interface at the start
-;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
@@ -27,7 +27,6 @@
 (require 'latex-custom)
 (require 'keybind-custom)
 (require 'jp-input-custom)
-(require 'fonts-custom)
 (require 'extras-custom) ; transparency
 (require 'programming-custom)
 
@@ -57,6 +56,10 @@
 (setq yas-snippet-dirs '( "~/.emacs.d/site-lisp/yasnippet/snippets" "~/.emacs.d/snippets"))
 (yas/global-mode 1)
 
+;; windmove
+
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
 
 ;; pymacs
 ; (require 'pymacs)
@@ -91,7 +94,8 @@
 
 ;; Spell checking
 (setq ispell-program-name "aspell"
-  ispell-extra-args '("--sug-mode=ultra"))
+      ispell-dictionary "british"
+      ispell-extra-args '("--sug-mode=ultra"))
 (add-hook 'org-mode-hook (lambda()(flyspell-mode 1)))
 (add-hook 'latex-mode-hook (lambda()(flyspell-mode 1)))
 (add-hook 'text-mode-hook (lambda()(flyspell-mode 1)))
@@ -109,6 +113,9 @@
 (setq TeX-output-view-style
       (quote
        (("^pdf$" "." "evince %o"))))
+
+;; load fonts last to stop stuff overriding
+(require 'fonts-custom)
 
 ;; Start emacs server
 (server-start)
