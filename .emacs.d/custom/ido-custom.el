@@ -7,7 +7,7 @@
       ido-max-prospects 8
       ido-everywhere t
       ido-enable-last-directory-history t
-      ido-max-work-directory-list 30
+      ido-max-work-directory-list 50
       ido-max-work-file-list 50)
 (ido-mode 1)
 
