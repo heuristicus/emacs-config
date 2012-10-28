@@ -57,7 +57,6 @@
 (yas/global-mode 1)
 
 ;; windmove
-
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 

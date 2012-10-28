@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: for i loop 
+# contributor: Michal
+# key: ilp
+# --
+${1:int i;
+}
+for (i = ${2:0}; i ${3:< length}; ++i) {
+    printf("${4:%d}\\n"${4:$(if (string-match "%" text) ", " "\);")
+    }$5${4:$(if (string-match "%" text) "\);" "")}
+}

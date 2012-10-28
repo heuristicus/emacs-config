@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: putchar
+# key: pchr
+# --
+putchar('$1');
