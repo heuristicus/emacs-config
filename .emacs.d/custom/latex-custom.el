@@ -7,5 +7,9 @@
 (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
 (add-to-list 'TeX-command-list '("pLaTeX" "%`platex%(mode)%' %t" TeX-run-TeX nil t))))
 
+;; AUCTeX evince viewer
+(setq TeX-output-view-style
+      (quote
+       (("^pdf$" "." "evince %o"))))
 
 (provide 'latex-custom)

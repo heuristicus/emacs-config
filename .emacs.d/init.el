@@ -30,6 +30,10 @@
 (require 'extras-custom) ; transparency
 (require 'programming-custom)
 
+;; org mode stuff
+(setq org-completion-use-ido 1)
+(setq org-empty-line-terminates-plain-lists 1)
+
 ;; abbrevs
 (setq abbrev-file-name "~/.emacs.d/custom/abbrevs")
 (quietly-read-abbrev-file)
@@ -102,19 +106,21 @@
 ;; Inhibit displaying stuff at startup
 (setq inhibit-splash-screen t)
 
+;; Replace yes-or-no prompt
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; set tooltips to display in the echo area
+(tooltip-mode -1)
+(setq tooltip-use-echo-area t)
+
+;; load fonts last to stop them from being overridden
+(require 'fonts-custom)
+
 ;; Set colour theme
 (color-theme-zenburn)
 
 ;; cursor customisations
 (blink-cursor-mode 0)
-
-;; AUCTeX evince viewer
-(setq TeX-output-view-style
-      (quote
-       (("^pdf$" "." "evince %o"))))
-
-;; load fonts last to stop stuff overriding
-(require 'fonts-custom)
 
 ;; Start emacs server
 (server-start)

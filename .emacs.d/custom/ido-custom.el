@@ -8,7 +8,8 @@
       ido-everywhere t
       ido-enable-last-directory-history t
       ido-max-work-directory-list 50
-      ido-max-work-file-list 50)
+      ido-max-work-file-list 50
+      ido-create-new-buffer 'always)
 (ido-mode 1)
 
 (provide 'ido-custom)
