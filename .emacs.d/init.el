@@ -69,9 +69,25 @@
 ; (pymacs-load "ropemacs" "rope-")
 
 ;; cedet
-;(load-file (concat dotfiles-dir "/site-lisp/cedet/cedet-1.1/common/cedet.el"))
-;(require 'semantic-gcc)
-;(semantic-load-enable-code-helpers)
+(load-file (concat dotfiles-dir "/site-lisp/cedet/cedet-1.1/common/cedet.el"))
+(require 'semantic-gcc)
+(require 'semantic/ia)
+(when (cedet-gnu-global-version-check t)
+  (semanticdb-enable-gnu-global-databases 'c-mode)
+  (semanticdb-enable-gnu-global-databases 'c++-mode))
+(semantic-load-enable-code-helpers)
+(global-ede-mode 1)
+(defun my-cedet-hook ()
+  (local-set-key (kbd "C-;") 'semantic-ia-complete-symbol-menu)
+  (local-set-key (kbd "C-.") 'semantic-complete-analyze-inline)
+  (local-set-key (kbd "C-c p") 'semantic-analyze-proto-impl-toggle))
+(add-hook 'c-mode-common-hook 'my-cedet-hook)
+(defun my-c-mode-cedet-hook ()
+  (local-set-key (kbd ".") 'semantic-complete-self-insert)
+  (local-set-key (kbd ">") 'semantic-complete-self-insert)
+  (add-to-list 'ac-sources 'ac-source-gtags)
+  (add-to-list 'ac-sources 'ac-source-semantic))
+(add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
 
 ;; auto-complete mode
 (require 'auto-complete-custom)
@@ -109,9 +125,20 @@
 ;; Replace yes-or-no prompt
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; Hide compilation window on success
+(winner-mode 1)
+(setq compilation-finish-functions 'compile-autoclose)
+  (defun compile-autoclose (buffer string)
+     (cond ((string-match "finished" string)
+	  (bury-buffer "*compilation*")
+          (winner-undo)
+          (message "Build successful."))
+         (t                                                                    
+          (message "Compilation exited abnormally: %s" string))))
+
 ;; set tooltips to display in the echo area
-(tooltip-mode -1)
-(setq tooltip-use-echo-area t)
+;(tooltip-mode -1)
+;(setq tooltip-use-echo-area t)
 
 ;; load fonts last to stop them from being overridden
 (require 'fonts-custom)
@@ -121,6 +148,12 @@
 
 ;; cursor customisations
 (blink-cursor-mode 0)
+
+;; Set column number mode
+(setq column-number-mode t)
+
+;; Prevent pausing on C-z
+(global-unset-key (kbd "C-z"))
 
 ;; Start emacs server
 (server-start)
