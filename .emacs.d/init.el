@@ -155,5 +155,11 @@
 ;; Prevent pausing on C-z
 (global-unset-key (kbd "C-z"))
 
+;; Set some name and email variables
+(setq user-mail-address "mxs968@cs.bham.ac.uk")
+(setq user-full-name "Michal Staniaszek")
+(setq add-log-full-name "Michal Staniaszek")
+(setq add-log-mailing-address "mxs968@cs.bham.ac.uk")
+
 ;; Start emacs server
 (server-start)

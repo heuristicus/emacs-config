@@ -9,7 +9,8 @@
       ido-enable-last-directory-history t
       ido-max-work-directory-list 50
       ido-max-work-file-list 50
-      ido-create-new-buffer 'always)
+      ido-create-new-buffer 'always
+      ido-auto-merge-work-directories-length -1)
 (ido-mode 1)
 
 (provide 'ido-custom)
