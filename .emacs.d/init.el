@@ -21,7 +21,6 @@
 					   "cedet")))
 
 ;; Load customised stuff
-
 (require 'ido-custom)
 (require 'color-theme-custom)
 (require 'latex-custom)
@@ -33,6 +32,8 @@
 ;; org mode stuff
 (setq org-completion-use-ido 1)
 (setq org-empty-line-terminates-plain-lists 1)
+(setq org-export-latex-hyperref-format "\\ref{%s}")
+(require 'org-special-blocks)
 
 ;; abbrevs
 (setq abbrev-file-name "~/.emacs.d/custom/abbrevs")
@@ -149,8 +150,16 @@
 ;; cursor customisations
 (blink-cursor-mode 0)
 
+;; Fill columns to 80 characters
+(setq-default fill-column 80)
+
 ;; Set column number mode
 (setq column-number-mode t)
+
+;; paren mode
+(require 'paren)
+(show-paren-mode 1)
+(setq show-paren-delay 0)
 
 ;; Prevent pausing on C-z
 (global-unset-key (kbd "C-z"))

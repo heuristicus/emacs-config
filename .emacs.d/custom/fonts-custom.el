@@ -25,7 +25,4 @@
 (if (eq window-system 'x)
     (set-default-font "Inconsolata-11"))
 
-
-
 (provide 'fonts-custom)
-
