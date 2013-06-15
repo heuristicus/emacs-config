@@ -4,14 +4,12 @@
 
 
  ;;set xetex mode in tex/latex
-(add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX
-				 nil t))
+(add-hook 'LaTeX-mode-hook (lambda()
+(add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))))
 
 (setq TeX-view-program-list
       '(("evince" "evince %o")))
 (setq TeX-view-program-selection '((output-pdf "Evince")))
-
-(add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 
 ;; AUCTeX evince viewer
 (setq TeX-output-view-style

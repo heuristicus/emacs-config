@@ -1,7 +1,7 @@
 ;; c mode
 (require 'smart-compile)
 (defun my-c-hook ()
-  (setq c-default-style "linux")
+  (setq c-default-style "k&r")
   (c-toggle-auto-newline 1)
   (setq c-basic-offset 4)
   (c-toggle-auto-hungry-state 1))

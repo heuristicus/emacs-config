@@ -1,9 +1,14 @@
 (define-abbrev-table 'org-mode-abbrev-table 
   '(
-    ("wtop" 
+     ("wtop" 
      "|漢字|読み|英語|\n|------+------+------|\n|      |      |      |" nil 1)
      ("antsyn"
      "|漢字| ひらがな| 英語1| 英語2 |\n|------+------+------|\n" nil 1)
+     ("poisson"
+     "Poisson" nil 1)
+     ("subinterval"
+     "sub-interval" nil 1)
+     ("subintervals"
+     "sub-intervals" nil 1)
     )
-
 )

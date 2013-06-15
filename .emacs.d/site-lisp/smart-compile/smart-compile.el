@@ -107,7 +107,7 @@ evaluate FUNCTION instead of running a compilation command.
 (defvar smart-compile-check-makefile t)
 (make-variable-buffer-local 'smart-compile-check-makefile)
 
-(defcustom smart-compile-make-program "make "
+(defcustom smart-compile-make-program "make CFLAGS='-Wall -Werror -O2 -g'"
   "The command by which to invoke the make program."
   :type 'string
   :group 'smart-compile)
@@ -148,7 +148,7 @@ which is defined in `smart-compile-alist'."
                (file-readable-p "makefile")))
       (if (y-or-n-p "Makefile is found.  Try 'make'? ")
           (progn
-            (set (make-local-variable 'compile-command) "make ")
+            (set (make-local-variable 'compile-command) "make CFLAGS='-Wall -Werror -O2 -g'")
             (call-interactively 'compile)
             (setq not-yet nil)
             )

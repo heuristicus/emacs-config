@@ -18,7 +18,8 @@
 					   "autopair"
 					   "word-count"
 					   "smart-compile"
-					   "cedet")))
+					   "cedet"
+					   "markdown")))
 
 ;; Load customised stuff
 (require 'ido-custom)
@@ -33,7 +34,6 @@
 (setq org-completion-use-ido 1)
 (setq org-empty-line-terminates-plain-lists 1)
 (setq org-export-latex-hyperref-format "\\ref{%s}")
-(require 'org-special-blocks)
 
 ;; abbrevs
 (setq abbrev-file-name "~/.emacs.d/custom/abbrevs")
@@ -45,6 +45,13 @@
 ;; word-count
 (require 'word-count)
 
+;; markdown mode
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
 ;; autopair
 (require 'autopair)
 (dolist (ap-hook '(emacs-lisp-mode-hook
@@ -54,6 +61,8 @@
 		   java-mode-hook))
   (add-hook ap-hook 'autopair-mode))
 
+;; cuda syntax highlighting
+(add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
 
 ;; yasnippet
 (require 'yasnippet)
@@ -70,25 +79,25 @@
 ; (pymacs-load "ropemacs" "rope-")
 
 ;; cedet
-(load-file (concat dotfiles-dir "/site-lisp/cedet/cedet-1.1/common/cedet.el"))
-(require 'semantic-gcc)
-(require 'semantic/ia)
-(when (cedet-gnu-global-version-check t)
-  (semanticdb-enable-gnu-global-databases 'c-mode)
-  (semanticdb-enable-gnu-global-databases 'c++-mode))
-(semantic-load-enable-code-helpers)
-(global-ede-mode 1)
-(defun my-cedet-hook ()
-  (local-set-key (kbd "C-;") 'semantic-ia-complete-symbol-menu)
-  (local-set-key (kbd "C-.") 'semantic-complete-analyze-inline)
-  (local-set-key (kbd "C-c p") 'semantic-analyze-proto-impl-toggle))
-(add-hook 'c-mode-common-hook 'my-cedet-hook)
-(defun my-c-mode-cedet-hook ()
-  (local-set-key (kbd ".") 'semantic-complete-self-insert)
-  (local-set-key (kbd ">") 'semantic-complete-self-insert)
-  (add-to-list 'ac-sources 'ac-source-gtags)
-  (add-to-list 'ac-sources 'ac-source-semantic))
-(add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
+;; (load-file (concat dotfiles-dir "/site-lisp/cedet/cedet-1.1/common/cedet.el"))
+;; (require 'semantic-gcc)
+;; (require 'semantic/ia)
+;; (when (cedet-gnu-global-version-check t)
+;;   (semanticdb-enable-gnu-global-databases 'c-mode)
+;;   (semanticdb-enable-gnu-global-databases 'c++-mode))
+;; (semantic-load-enable-code-helpers)
+;; (global-ede-mode 1)
+;; (defun my-cedet-hook ()
+;;   (local-set-key (kbd "C-;") 'semantic-ia-complete-symbol-menu)
+;;   (local-set-key (kbd "C-.") 'semantic-complete-analyze-inline)
+;;   (local-set-key (kbd "C-c p") 'semantic-analyze-proto-impl-toggle))
+;; (add-hook 'c-mode-common-hook 'my-cedet-hook)
+;; (defun my-c-mode-cedet-hook ()
+;;   (local-set-key (kbd ".") 'semantic-complete-self-insert)
+;;   (local-set-key (kbd ">") 'semantic-complete-self-insert)
+;;   (add-to-list 'ac-sources 'ac-source-gtags)
+;;   (add-to-list 'ac-sources 'ac-source-semantic))
+;; (add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
 
 ;; auto-complete mode
 (require 'auto-complete-custom)
@@ -160,6 +169,9 @@
 (require 'paren)
 (show-paren-mode 1)
 (setq show-paren-delay 0)
+
+;; Auto fill for text modes
+;(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;; Prevent pausing on C-z
 (global-unset-key (kbd "C-z"))
