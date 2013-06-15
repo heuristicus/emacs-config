@@ -19,7 +19,8 @@
 					   "word-count"
 					   "smart-compile"
 					   "cedet"
-					   "markdown")))
+					   "markdown"
+					   "popup")))
 
 ;; Load customised stuff
 (require 'ido-custom)
@@ -66,7 +67,6 @@
 
 ;; yasnippet
 (require 'yasnippet)
-(yas/initialize)
 (setq yas-snippet-dirs '( "~/.emacs.d/site-lisp/yasnippet/snippets" "~/.emacs.d/snippets"))
 (yas/global-mode 1)
 
