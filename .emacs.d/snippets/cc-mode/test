@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: test 
+# key: tst
+# --
+START_TEST($1)
+{
+$2
+}
+END_TEST

@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: header
+# key: head
+# --
+#include <iostream>
+$1
+using namespace std;
+
+int main(int argc, char *argv[])
+{
+    $0    
+    return 0;
+}

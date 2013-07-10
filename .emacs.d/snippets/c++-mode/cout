@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: coutendl
+# key: cout
+# --
+cout << ${1:"$2"} << endl;
+$0
