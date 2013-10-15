@@ -25,4 +25,8 @@
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
+
+(setq LaTeX-verbatim-environments-local '("BVerbatim"))
+
+
 (provide 'latex-custom)

@@ -20,7 +20,9 @@
 					   "smart-compile"
 					   "cedet"
 					   "markdown"
-					   "popup")))
+					   "popup"
+					   "pandoc"
+					   "org")))
 
 ;; Load customised stuff
 (require 'ido-custom)
@@ -35,6 +37,8 @@
 (setq org-completion-use-ido 1)
 (setq org-empty-line-terminates-plain-lists 1)
 (setq org-export-latex-hyperref-format "\\ref{%s}")
+(require 'org-special-blocks)
+(defalias 'org-called-interactively-p 'called-interactively-p)
 
 ;; abbrevs
 (setq abbrev-file-name "~/.emacs.d/custom/abbrevs")

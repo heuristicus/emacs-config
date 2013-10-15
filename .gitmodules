@@ -10,3 +10,6 @@
 [submodule ".emacs.d/site-lisp/popup"]
 	path = .emacs.d/site-lisp/popup
 	url = git@github.com:auto-complete/popup-el.git
+[submodule ".emacs.d/site-lisp/pandoc"]
+	path = .emacs.d/site-lisp/pandoc
+	url = git@github.com:joostkremers/pandoc-mode.git
