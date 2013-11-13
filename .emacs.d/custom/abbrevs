@@ -10,5 +10,7 @@
      "sub-interval" nil 1)
      ("subintervals"
      "sub-intervals" nil 1)
+     ("gaussian"
+     "Gaussian" nil 1)
     )
 )

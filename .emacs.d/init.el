@@ -22,7 +22,8 @@
 					   "markdown"
 					   "popup"
 					   "pandoc"
-					   "org")))
+					   "org"
+					   "slime")))
 
 ;; Load customised stuff
 (require 'ido-custom)
@@ -45,7 +46,7 @@
 (quietly-read-abbrev-file)
 (dolist (abbr-hook '(org-mode-hook
 		     text-mode-hook))
-  (add-hook abbr-hook (lambda () (abbrev-mode 1))))
+  (add-hook abbr-hook (lambda () (abbrev-mode 1)))
 
 ;; word-count
 (require 'word-count)
@@ -108,7 +109,8 @@
 (dolist (ac-hook '(emacs-lisp-mode-hook 
 		   haskell-mode-hook 
 		   python-mode-hook 
-		   c-mode-hook 
+		   c-mode-hook
+		   lisp-mode-hook
 		   java-mode-hook 
 		   latex-mode-hook))
   (add-hook ac-hook 'auto-complete-mode))
@@ -121,17 +123,25 @@
 			python-mode-hook 
 			c-mode-common-hook 
 			java-mode-hook 
-			latex-mode-hook ))
+			latex-mode-hook
+			lisp-mode-hook))
   (add-hook rainbow-hook 'rainbow-delimiters-mode))
+
+
+;; Auto fill for text modes
+(dolist (auto-fill-hook '(text-mode-hook
+			  latex-mode-hook))
+  (add-hook auto-fill-hook 'turn-on-auto-fill))
 
 
 ;; Spell checking
 (setq ispell-program-name "aspell"
       ispell-dictionary "british"
       ispell-extra-args '("--sug-mode=ultra"))
-(add-hook 'org-mode-hook (lambda()(flyspell-mode 1)))
-(add-hook 'latex-mode-hook (lambda()(flyspell-mode 1)))
-(add-hook 'text-mode-hook (lambda()(flyspell-mode 1)))
+(dolist (spell-hook '(org-mode-hook
+		      latex-mode-hook
+		      text-mode-hook))
+  (add-hook spell-hook (lambda () (flyspell-mode 1)))
 
 ;; Inhibit displaying stuff at startup
 (setq inhibit-splash-screen t)
@@ -142,13 +152,13 @@
 ;; Hide compilation window on success
 (winner-mode 1)
 (setq compilation-finish-functions 'compile-autoclose)
-  (defun compile-autoclose (buffer string)
-     (cond ((string-match "finished" string)
-	  (bury-buffer "*compilation*")
-          (winner-undo)
-          (message "Build successful."))
-         (t                                                                    
-          (message "Compilation exited abnormally: %s" string))))
+(defun compile-autoclose (buffer string)
+  (cond ((string-match "finished" string)
+	 (bury-buffer "*compilation*")
+	 (winner-undo)
+	 (message "Build successful."))
+	(t                                                                    
+	 (message "Compilation exited abnormally: %s" string))))
 
 ;; set tooltips to display in the echo area
 ;(tooltip-mode -1)
@@ -174,17 +184,20 @@
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 
-;; Auto fill for text modes
-;(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;; Prevent pausing on C-z
 (global-unset-key (kbd "C-z"))
 
 ;; Set some name and email variables
-(setq user-mail-address "mxs968@cs.bham.ac.uk")
+(setq user-mail-address "michalst@kth.se")
 (setq user-full-name "Michal Staniaszek")
 (setq add-log-full-name "Michal Staniaszek")
-(setq add-log-mailing-address "mxs968@cs.bham.ac.uk")
+(setq add-log-mailing-address "michalst@kth.se")
 
 ;; Start emacs server
 (server-start)
+
+;; set font size for netbook
+(when (equal system-name "russell")
+  (prin1 "netbook active")
+  (set-default-font "Inconsolata-10"))

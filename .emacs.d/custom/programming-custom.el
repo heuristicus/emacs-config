@@ -10,4 +10,10 @@
 
 (add-hook 'c-mode-common-hook 'my-c-hook)
 
+;; slime for CLISP
+(setq inferior-lisp-program "/usr/bin/clisp")
+(require 'slime)
+(slime-setup '(slime-fancy
+	       slime-indentation))
+
 (provide 'programming-custom)
