@@ -10,10 +10,16 @@
 
 (add-hook 'c-mode-common-hook 'my-c-hook)
 
+;; general programming setup
+
+
 ;; slime for CLISP
 (setq inferior-lisp-program "/usr/bin/clisp")
 (require 'slime)
 (slime-setup '(slime-fancy
 	       slime-indentation))
+
+;; put emacs into octave-mode when a matlab file is read.
+(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
 (provide 'programming-custom)

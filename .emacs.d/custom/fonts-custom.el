@@ -21,8 +21,12 @@
                             (decode-char 'ucs #x30ff))
                       "-*-Droid Sans-normal-normal-normal-*-15-*-*-*-d-0-iso10646-1")
 
+;; Set default font for separate frames so that emacsclient has the same font size
+(add-to-list 'default-frame-alist
+             '(font . "Inconsolata-10"))
+
 ;; Set default font for everything.
 (if (eq window-system 'x)
-    (set-default-font "Inconsolata-11"))
+    (set-default-font "Inconsolata-10"))
 
 (provide 'fonts-custom)

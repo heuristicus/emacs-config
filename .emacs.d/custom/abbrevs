@@ -1,16 +1,121 @@
-(define-abbrev-table 'org-mode-abbrev-table 
+;;-*-coding: utf-8;-*-
+(define-abbrev-table 'Buffer-menu-mode-abbrev-table '())
+
+(define-abbrev-table 'bibtex-mode-abbrev-table '())
+
+(define-abbrev-table 'calc-keypad-mode-abbrev-table '())
+
+(define-abbrev-table 'calendar-mode-abbrev-table '())
+
+(define-abbrev-table 'comint-mode-abbrev-table '())
+
+(define-abbrev-table 'completion-list-mode-abbrev-table '())
+
+(define-abbrev-table 'docTeX-mode-abbrev-table '())
+
+(define-abbrev-table 'emacs-lisp-byte-code-mode-abbrev-table '())
+
+(define-abbrev-table 'emacs-lisp-mode-abbrev-table '())
+
+(define-abbrev-table 'fundamental-mode-abbrev-table '())
+
+(define-abbrev-table 'global-abbrev-table '())
+
+(define-abbrev-table 'help-mode-abbrev-table '())
+
+(define-abbrev-table 'html-mode-abbrev-table '())
+
+(define-abbrev-table 'lisp-mode-abbrev-table '())
+
+(define-abbrev-table 'occur-edit-mode-abbrev-table '())
+
+(define-abbrev-table 'occur-mode-abbrev-table '())
+
+(define-abbrev-table 'octave-abbrev-table '())
+
+(define-abbrev-table 'octave-mode-abbrev-table '())
+
+(define-abbrev-table 'org-mode-abbrev-table
   '(
-     ("wtop" 
-     "|漢字|読み|英語|\n|------+------+------|\n|      |      |      |" nil 1)
-     ("antsyn"
-     "|漢字| ひらがな| 英語1| 英語2 |\n|------+------+------|\n" nil 1)
-     ("poisson"
-     "Poisson" nil 1)
-     ("subinterval"
-     "sub-interval" nil 1)
-     ("subintervals"
-     "sub-intervals" nil 1)
-     ("gaussian"
-     "Gaussian" nil 1)
-    )
-)
+    ("antsyn" "|漢字| ひらがな| 英語1| 英語2 |
+|------+------+------|
+" nil 1)
+    ("ktab" "|漢字|読み|英語|
+|------+------+------|
+|      |      |      |" nil 1)
+   ))
+
+(define-abbrev-table 'outline-mode-abbrev-table '())
+
+(define-abbrev-table 'process-menu-mode-abbrev-table '())
+
+(define-abbrev-table 'prog-mode-abbrev-table '())
+
+(define-abbrev-table 'reftex-select-bib-mode-abbrev-table '())
+
+(define-abbrev-table 'reftex-select-label-mode-abbrev-table '())
+
+(define-abbrev-table 'select-tags-table-mode-abbrev-table '())
+
+(define-abbrev-table 'sgml-mode-abbrev-table '())
+
+(define-abbrev-table 'sh-mode-abbrev-table '())
+
+(define-abbrev-table 'sldb-mode-abbrev-table '())
+
+(define-abbrev-table 'slime-connection-list-mode-abbrev-table '())
+
+(define-abbrev-table 'slime-fuzzy-completions-mode-abbrev-table '())
+
+(define-abbrev-table 'slime-inspector-mode-abbrev-table '())
+
+(define-abbrev-table 'slime-thread-control-mode-abbrev-table '())
+
+(define-abbrev-table 'slime-xref-mode-abbrev-table '())
+
+(define-abbrev-table 'snippet-mode-abbrev-table '())
+
+(define-abbrev-table 'special-mode-abbrev-table '())
+
+(define-abbrev-table 'tabulated-list-mode-abbrev-table '())
+
+(define-abbrev-table 'text-mode-abbrev-table
+  '(
+    ("asn" "assumption" nil 0)
+    ("bbox" "bounding box" nil 0)
+    ("bg" "background" nil 0)
+    ("conv" "convolution" nil 0)
+    ("crd" "coordinates" nil 2)
+    ("dist" "distribution" nil 5)
+    ("ekf" "EKF" nil 2)
+    ("ekfl" "extended Kalman filter" nil 1)
+    ("fft" "fast Fourier transform" nil 0)
+    ("fg" "foreground" nil 0)
+    ("fourier" "Fourier" nil 16)
+    ("ft" "Fourier transform" nil 5)
+    ("gaussian" "Gaussian" nil 5)
+    ("gaussians" "Gaussians" nil 8)
+    ("gsn" "Gaussian" nil 23)
+    ("gss" "Gaussians" nil 15)
+    ("hge" "homogeneous" nil 3)
+    ("hmg" "homogeneous" nil 1)
+    ("info" "information" nil 2)
+    ("ipt" "important" nil 1)
+    ("kalman" "Kalman" nil 15)
+    ("kf" "KF" nil 1)
+    ("kfl" "Kalman filter" nil 11)
+    ("mog" "mixture of Gaussians" nil 4)
+    ("pf" "PF" nil 0)
+    ("pfl" "particle filter" nil 8)
+    ("poisson" "Poisson" nil 1)
+    ("pr" "probability" nil 8)
+    ("prj" "projection" nil 1)
+    ("subinterval" "sub-interval" nil 1)
+    ("subintervals" "sub-intervals" nil 1)
+    ("zoh" "zero-order hold" nil 0)
+   ))
+
+(define-abbrev-table 'vc-git-log-edit-mode-abbrev-table '())
+
+(define-abbrev-table 'vc-git-log-view-mode-abbrev-table '())
+

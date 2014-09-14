@@ -2,9 +2,9 @@
 ;; Incompatible with autopair-mode
 (require 'mozc)
 
-(setq default-input-method "japanese-mozc")
-(global-set-key (kbd "C-x C-j") 'toggle-input-method)
-(setq mozc-candidate-style 'echo-area)
+;; (setq default-input-method "japanese-mozc")
+;; (global-set-key (kbd "C-x C-j") 'toggle-input-method)
+;; (setq mozc-candidate-style 'echo-area)
 
 ;; Overlay input
 ;; ;; ibus-mode

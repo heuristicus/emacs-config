@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: tex report header
+# key: txrep
+# --
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[top=1cm]{geometry}
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Ligatures={Common},Numbers={Lining}]{Linux Libertine}
+\author{Michal Staniaszek}
+\title{$1}
+
+\begin{document}
+\maketitle
+$0
+\end{document}

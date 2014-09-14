@@ -16,14 +16,13 @@
 					   "yasnippet"
 					   "rainbow-delimiters"
 					   "autopair"
-					   "word-count"
 					   "smart-compile"
 					   "cedet"
-					   "markdown"
 					   "popup"
 					   "pandoc"
 					   "org"
-					   "slime")))
+					   "slime"
+					   "mozc")))
 
 ;; Load customised stuff
 (require 'ido-custom)
@@ -46,10 +45,7 @@
 (quietly-read-abbrev-file)
 (dolist (abbr-hook '(org-mode-hook
 		     text-mode-hook))
-  (add-hook abbr-hook (lambda () (abbrev-mode 1)))
-
-;; word-count
-(require 'word-count)
+  (add-hook abbr-hook (lambda () (abbrev-mode 1))))
 
 ;; markdown mode
 (autoload 'markdown-mode "markdown-mode"
@@ -141,7 +137,7 @@
 (dolist (spell-hook '(org-mode-hook
 		      latex-mode-hook
 		      text-mode-hook))
-  (add-hook spell-hook (lambda () (flyspell-mode 1)))
+  (add-hook spell-hook (lambda () (flyspell-mode 1))))
 
 ;; Inhibit displaying stuff at startup
 (setq inhibit-splash-screen t)
@@ -163,6 +159,9 @@
 ;; set tooltips to display in the echo area
 ;(tooltip-mode -1)
 ;(setq tooltip-use-echo-area t)
+
+;; change sentence endings to single space for M-e and M-a
+(setq sentence-end-double-space nil)
 
 ;; load fonts last to stop them from being overridden
 (require 'fonts-custom)
@@ -197,7 +196,8 @@
 ;; Start emacs server
 (server-start)
 
-;; set font size for netbook
+;; set font sizes for different computers
 (when (equal system-name "russell")
-  (prin1 "netbook active")
+  (set-default-font "Inconsolata-10"))
+(when (equal system-name "sagan")
   (set-default-font "Inconsolata-10"))
