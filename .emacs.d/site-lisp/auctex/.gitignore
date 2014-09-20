@@ -1,0 +1,23 @@
+# ignore the results of compilation
+*.aux
+*.cfg
+*.def
+*.drv
+*.dvi
+*.elc
+*.ins
+*.log
+*.pdf
+*.sty
+tex-site.el
+tex-site.el.out
+Makefile
+auctex.el
+auto-loads.el
+auto-loads.el~
+config.log
+config.status
+preview/auto.el
+preview/config.status
+preview/preview-latex.el
+preview/preview-latex.el~

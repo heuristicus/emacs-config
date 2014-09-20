@@ -1,6 +1,3 @@
-[submodule ".emacs.d/site-lisp/yasnippet"]
-	path = .emacs.d/site-lisp/yasnippet
-	url = git://github.com/capitaomorte/yasnippet.git
 [submodule ".emacs.d/site-lisp/auto-complete"]
 	path = .emacs.d/site-lisp/auto-complete
 	url = git@github.com:auto-complete/auto-complete.git
@@ -13,3 +10,9 @@
 [submodule ".emacs.d/site-lisp/pandoc"]
 	path = .emacs.d/site-lisp/pandoc
 	url = git@github.com:joostkremers/pandoc-mode.git
+[submodule ".emacs.d/site-lisp/slime"]
+	path = .emacs.d/site-lisp/slime
+	url = git@github.com:slime/slime.git
+[submodule ".emacs.d/site-lisp/yasnippet"]
+	path = .emacs.d/site-lisp/yasnippet
+	url = git@github.com:capitaomorte/yasnippet.git

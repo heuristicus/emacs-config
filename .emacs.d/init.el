@@ -22,14 +22,15 @@
 					   "pandoc"
 					   "org"
 					   "slime"
-					   "mozc")))
+					   ;;"mozc"
+						)))
 
 ;; Load customised stuff
 (require 'ido-custom)
 (require 'color-theme-custom)
 (require 'latex-custom)
 (require 'keybind-custom)
-(require 'jp-input-custom)
+;(require 'jp-input-custom)
 (require 'extras-custom) ; transparency
 (require 'programming-custom)
 
@@ -37,7 +38,7 @@
 (setq org-completion-use-ido 1)
 (setq org-empty-line-terminates-plain-lists 1)
 (setq org-export-latex-hyperref-format "\\ref{%s}")
-(require 'org-special-blocks)
+;(require 'org-special-blocks)
 (defalias 'org-called-interactively-p 'called-interactively-p)
 
 ;; abbrevs
