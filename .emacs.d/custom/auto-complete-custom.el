@@ -1,12 +1,14 @@
 (require 'auto-complete)
+(require 'auto-complete-config)
+(ac-config-default)
 
-(setq-default ac-sources '(ac-source-dictionary ac-source-abbrev ac-source-words-in-same-mode-buffers))
-(setq-default ac-auto-start 5)
+;; (setq-default ac-sources '(ac-source-dictionary ac-source-abbrev ac-source-words-in-same-mode-buffers))
+;; (setq-default ac-auto-start 5)
 ;; (defun ac-emacs-lisp-mode-setup ()
 ;;   (setq ac-sources (append '(ac-source-features ac-source-functions ac-source-yasnippet ac-source-variables ac-source-symbols) ac-sources)))
 
-(defun ac-cc-mode-setup ()
-  (setq ac-sources (append '() ac-sources)))
+;; (defun ac-cc-mode-setup ()
+;;   (setq ac-sources (append '() ac-sources)))
 
 ;; (defun ac-config-default ()
 ;;   (setq-default ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers)))

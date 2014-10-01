@@ -1,3 +1,12 @@
+;; autopair
+(require 'autopair)
+(dolist (ap-hook '(emacs-lisp-mode-hook
+		   haskell-mode-hook 
+		   python-mode-hook 
+		   c-mode-common-hook 
+		   java-mode-hook))
+  (add-hook ap-hook 'autopair-mode))
+
 ;; c mode
 (require 'smart-compile)
 (defun my-c-hook ()
@@ -9,6 +18,41 @@
 (add-to-list 'smart-compile-alist '("\\.c$" . "gcc -g -Wall -Werror -o %n %f"))
 
 (add-hook 'c-mode-common-hook 'my-c-hook)
+
+;; cuda syntax highlighting
+(add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
+
+;; cedet
+;; (load-file (concat dotfiles-dir "/site-lisp/cedet/cedet-1.1/common/cedet.el"))
+;; (require 'semantic-gcc)
+;; (require 'semantic/ia)
+;; (when (cedet-gnu-global-version-check t)
+;;   (semanticdb-enable-gnu-global-databases 'c-mode)
+;;   (semanticdb-enable-gnu-global-databases 'c++-mode))
+;; (semantic-load-enable-code-helpers)
+;; (global-ede-mode 1)
+;; (defun my-cedet-hook ()
+;;   (local-set-key (kbd "C-;") 'semantic-ia-complete-symbol-menu)
+;;   (local-set-key (kbd "C-.") 'semantic-complete-analyze-inline)
+;;   (local-set-key (kbd "C-c p") 'semantic-analyze-proto-impl-toggle))
+;; (add-hook 'c-mode-common-hook 'my-cedet-hook)
+;; (defun my-c-mode-cedet-hook ()
+;;   (local-set-key (kbd ".") 'semantic-complete-self-insert)
+;;   (local-set-key (kbd ">") 'semantic-complete-self-insert)
+;;   (add-to-list 'ac-sources 'ac-source-gtags)
+;;   (add-to-list 'ac-sources 'ac-source-semantic))
+;; (add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
+
+;; Hide compilation window on success
+(winner-mode 1)
+(setq compilation-finish-functions 'compile-autoclose)
+(defun compile-autoclose (buffer string)
+  (cond ((string-match "finished" string)
+	 (bury-buffer "*compilation*")
+	 (winner-undo)
+	 (message "Build successful."))
+	(t                                                                    
+	 (message "Compilation exited abnormally: %s" string))))
 
 ;; general programming setup
 

@@ -22,6 +22,7 @@
 					   "pandoc"
 					   "org"
 					   "slime"
+					   "markdown"
 					   ;;"mozc"
 						)))
 
@@ -55,51 +56,14 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-;; autopair
-(require 'autopair)
-(dolist (ap-hook '(emacs-lisp-mode-hook
-		   haskell-mode-hook 
-		   python-mode-hook 
-		   c-mode-common-hook 
-		   java-mode-hook))
-  (add-hook ap-hook 'autopair-mode))
-
-;; cuda syntax highlighting
-(add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
-
 ;; yasnippet
 (require 'yasnippet)
 (setq yas-snippet-dirs '( "~/.emacs.d/site-lisp/yasnippet/snippets" "~/.emacs.d/snippets"))
 (yas/global-mode 1)
 
-;; windmove
+;; windmove for fast switching between open buffer (shift-arrow)
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
-
-;; pymacs
-; (require 'pymacs)
-; (pymacs-load "ropemacs" "rope-")
-
-;; cedet
-;; (load-file (concat dotfiles-dir "/site-lisp/cedet/cedet-1.1/common/cedet.el"))
-;; (require 'semantic-gcc)
-;; (require 'semantic/ia)
-;; (when (cedet-gnu-global-version-check t)
-;;   (semanticdb-enable-gnu-global-databases 'c-mode)
-;;   (semanticdb-enable-gnu-global-databases 'c++-mode))
-;; (semantic-load-enable-code-helpers)
-;; (global-ede-mode 1)
-;; (defun my-cedet-hook ()
-;;   (local-set-key (kbd "C-;") 'semantic-ia-complete-symbol-menu)
-;;   (local-set-key (kbd "C-.") 'semantic-complete-analyze-inline)
-;;   (local-set-key (kbd "C-c p") 'semantic-analyze-proto-impl-toggle))
-;; (add-hook 'c-mode-common-hook 'my-cedet-hook)
-;; (defun my-c-mode-cedet-hook ()
-;;   (local-set-key (kbd ".") 'semantic-complete-self-insert)
-;;   (local-set-key (kbd ">") 'semantic-complete-self-insert)
-;;   (add-to-list 'ac-sources 'ac-source-gtags)
-;;   (add-to-list 'ac-sources 'ac-source-semantic))
-;; (add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
 
 ;; auto-complete mode
 (require 'auto-complete-custom)
@@ -107,6 +71,7 @@
 		   haskell-mode-hook 
 		   python-mode-hook 
 		   c-mode-hook
+		   c++-mode-hook
 		   lisp-mode-hook
 		   java-mode-hook 
 		   latex-mode-hook))
@@ -146,16 +111,8 @@
 ;; Replace yes-or-no prompt
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; Hide compilation window on success
-(winner-mode 1)
-(setq compilation-finish-functions 'compile-autoclose)
-(defun compile-autoclose (buffer string)
-  (cond ((string-match "finished" string)
-	 (bury-buffer "*compilation*")
-	 (winner-undo)
-	 (message "Build successful."))
-	(t                                                                    
-	 (message "Compilation exited abnormally: %s" string))))
+;; use XML in ROS .launch files
+(add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
 
 ;; set tooltips to display in the echo area
 ;(tooltip-mode -1)
