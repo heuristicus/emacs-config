@@ -6,25 +6,32 @@
 ;; Add the directory containing .el files to the load path
 (setq dotfiles-dir (expand-file-name "~/.emacs.d"))
 (add-to-list 'load-path dotfiles-dir)
+
+;; Stuff downloaded from the package manager. Load all subdirs
+(let ((default-directory (concat dotfiles-dir "/elpa")))
+  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-subdirs-to-load-path))
+
 (add-to-list 'load-path (concat dotfiles-dir "/custom"))
-(let ((default-directory "~/.emacs.d/site-lisp/"))
-      (normal-top-level-add-to-load-path '("color-theme-6.6.0/"
-					   "auctex"
-					   "auctex/preview"
-					   "anthy" 
-					   "auto-complete"
-					   "yasnippet"
-					   "rainbow-delimiters"
-					   "autopair"
-					   "smart-compile"
-					   "cedet"
-					   "popup"
-					   "pandoc"
-					   "org"
-					   "slime"
-					   "markdown"
-					   ;;"mozc"
-						)))
+
+(let ((default-directory "~/.emacs.d/site-lisp"))
+  (normal-top-level-add-to-load-path '("color-theme-6.6.0/"
+				       "auctex"
+				       "auctex/preview"
+				       "anthy" 
+				       "auto-complete"
+				       "yasnippet"
+				       "rainbow-delimiters"
+				       "autopair"
+				       "smart-compile"
+				       "cedet"
+				       "popup"
+				       "pandoc"
+				       "org"
+				       "slime"
+				       "markdown"
+				       ;;"mozc"
+				       )))
 
 ;; Load customised stuff
 (require 'ido-custom)
@@ -95,6 +102,11 @@
 			  latex-mode-hook))
   (add-hook auto-fill-hook 'turn-on-auto-fill))
 
+;; package archives other than the default
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+			 ("org" . "http://orgmode.org/elpa/")))
 
 ;; Spell checking
 (setq ispell-program-name "aspell"
