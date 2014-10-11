@@ -13,4 +13,6 @@
       ido-auto-merge-work-directories-length -1)
 (ido-mode 1)
 
+(ido-better-flex/enable)
+
 (provide 'ido-custom)

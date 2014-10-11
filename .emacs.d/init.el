@@ -3,6 +3,9 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+;; start maximised by default
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;; Add the directory containing .el files to the load path
 (setq dotfiles-dir (expand-file-name "~/.emacs.d"))
 (add-to-list 'load-path dotfiles-dir)
