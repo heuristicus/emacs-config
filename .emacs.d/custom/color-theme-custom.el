@@ -1,6 +1,10 @@
-(require 'color-theme)
+(let ((default-directory (concat dotfiles-dir "/themes")))
+  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-subdirs-to-load-path))
 
-(load-file (concat dotfiles-dir "/site-lisp/color-theme-6.6.0/themes/color-theme-blackboard.el"))
-(load-file (concat dotfiles-dir "/site-lisp/color-theme-6.6.0/themes/color-theme-zenburn.el"))
+;; should do this in a nicer way to allow all subdirectories to be loaded.
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/zenburn-emacs")
+
+(load-theme 'zenburn t)
 
 (provide 'color-theme-custom)

@@ -18,7 +18,7 @@
 (add-to-list 'load-path (concat dotfiles-dir "/custom"))
 
 (let ((default-directory "~/.emacs.d/site-lisp"))
-  (normal-top-level-add-to-load-path '("color-theme-6.6.0/"
+  (normal-top-level-add-to-load-path '(;"color-theme-6.6.0/"
 				       "auctex"
 				       "auctex/preview"
 				       "anthy" 
@@ -138,9 +138,6 @@
 
 ;; load fonts last to stop them from being overridden
 (require 'fonts-custom)
-
-;; Set colour theme
-(color-theme-zenburn)
 
 ;; cursor customisations
 (blink-cursor-mode 0)

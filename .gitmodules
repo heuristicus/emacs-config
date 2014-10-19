@@ -16,3 +16,6 @@
 [submodule ".emacs.d/site-lisp/yasnippet"]
 	path = .emacs.d/site-lisp/yasnippet
 	url = git@github.com:capitaomorte/yasnippet.git
+[submodule ".emacs.d/themes/zenburn-emacs"]
+	path = .emacs.d/themes/zenburn-emacs
+	url = git@github.com:bbatsov/zenburn-emacs.git
