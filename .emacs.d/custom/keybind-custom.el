@@ -17,4 +17,7 @@
 (global-set-key (kbd "C-S-a") 'move-beginning-of-line)
 (global-set-key (kbd "C-S-e") 'move-end-of-line)
 
+(global-set-key (kbd "M-n") 'scroll-other-window)
+(global-set-key (kbd "M-p") 'scroll-other-window-down)
+
 (provide 'keybind-custom)

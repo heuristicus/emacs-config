@@ -19,17 +19,20 @@
 
 (add-hook 'c-mode-common-hook 'my-c-hook)
 
+(require 'helm-gtags)
 ;; helm gtags
 (setq
  helm-gtags-ignore-case t
  helm-gtags-auto-update t
  helm-gtags-use-input-at-cursor t
  helm-gtags-pulse-at-cursor t
- helm-gtags-prefix-key "\C-cg"
+ helm-gtags-prefix-key "\C-c"
  helm-gtags-suggested-key-mapping t
  )
 
-(require 'helm-gtags)
+;; (global-set-key (kbd "C-c i") 'helm-semantic-or-imenu)
+;; (global-set-key (kbd "C-c m") 'helm-man-woman)
+
 ;; Enable helm-gtags-mode
 (add-hook 'dired-mode-hook 'helm-gtags-mode)
 (add-hook 'eshell-mode-hook 'helm-gtags-mode)

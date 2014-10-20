@@ -41,6 +41,7 @@
 (require 'color-theme-custom)
 (require 'latex-custom)
 (require 'keybind-custom)
+(require 'helm-custom)
 ;(require 'jp-input-custom)
 (require 'extras-custom) ; transparency
 (require 'programming-custom)
