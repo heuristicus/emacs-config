@@ -28,5 +28,9 @@
 
 (setq LaTeX-verbatim-environments-local '("BVerbatim"))
 
+;; TeXcount setup for AUCTeX
+(eval-after-load "tex"
+  '(add-to-list 'TeX-command-list
+	       '("TeXcount" "texcount %s.tex" TeX-run-compile nil t :help "Run texcount") t))
 
 (provide 'latex-custom)

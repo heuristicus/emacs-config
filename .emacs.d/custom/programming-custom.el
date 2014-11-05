@@ -30,6 +30,17 @@
  helm-gtags-suggested-key-mapping t
  )
 
+;; enable subword mode for programming buffers
+(dolist (sw-hook '(emacs-lisp-mode-hook 
+		   haskell-mode-hook 
+		   python-mode-hook 
+		   c-mode-hook
+		   c++-mode-hook
+		   lisp-mode-hook
+		   java-mode-hook 
+		   latex-mode-hook))
+  (add-hook sw-hook 'subword-mode))
+
 ;; (global-set-key (kbd "C-c i") 'helm-semantic-or-imenu)
 ;; (global-set-key (kbd "C-c m") 'helm-man-woman)
 
@@ -71,7 +82,7 @@
 ;;   (add-to-list 'ac-sources 'ac-source-semantic))
 ;; (add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
 
-;; Hide compilation window on success
+;;Hide compilation window on success
 (winner-mode 1)
 (setq compilation-finish-functions 'compile-autoclose)
 (defun compile-autoclose (buffer string)

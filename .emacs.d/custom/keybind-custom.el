@@ -20,4 +20,15 @@
 (global-set-key (kbd "M-n") 'scroll-other-window)
 (global-set-key (kbd "M-p") 'scroll-other-window-down)
 
+;; (defvar fringes-set nil)
+
+;; (defun centre-buffer ()
+;;   (if fringes-set
+;;       (set-fringe-mode '(1 . 1))
+;;     (set-fringe-mode '(200 . 200)))
+;;   (setq fringes-set (not fringes-set))
+;;   (fringes-set))
+
+;; (global-set-key (kbd "<f2> m") (centre-buffer))
+
 (provide 'keybind-custom)
