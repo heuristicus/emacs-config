@@ -19,3 +19,6 @@
 [submodule ".emacs.d/themes/zenburn-emacs"]
 	path = .emacs.d/themes/zenburn-emacs
 	url = git@github.com:bbatsov/zenburn-emacs.git
+[submodule ".emacs.d/site-lisp/yaml-mode"]
+	path = .emacs.d/site-lisp/yaml-mode
+	url = git@github.com:yoshiki/yaml-mode.git

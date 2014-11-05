@@ -3,6 +3,12 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+;; Minimal fringes
+(set-fringe-mode 1)
+
+;; Inhibit displaying stuff at startup
+(setq inhibit-splash-screen t)
+
 ;; start maximised by default
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
@@ -33,6 +39,7 @@
 				       "org"
 				       "slime"
 				       "markdown"
+				       "yaml-mode"
 				       ;;"mozc"
 				       )))
 
@@ -66,6 +73,10 @@
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; yaml mode
+(require 'yaml-mode)
+    (add-to-list 'auto-mode-alist '("\\.yml$" "\\.yaml$" . yaml-mode))
 
 ;; yasnippet
 (require 'yasnippet)
@@ -121,8 +132,6 @@
 		      text-mode-hook))
   (add-hook spell-hook (lambda () (flyspell-mode 1))))
 
-;; Inhibit displaying stuff at startup
-(setq inhibit-splash-screen t)
 
 ;; Replace yes-or-no prompt
 (fset 'yes-or-no-p 'y-or-n-p)
