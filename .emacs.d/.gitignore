@@ -1,4 +1,10 @@
 session*
+.ido.last
+.org-id-locations
+ac-comphist.dat
+tramp
+semanticdb
+elpa
 \#*
 .#*
 *~

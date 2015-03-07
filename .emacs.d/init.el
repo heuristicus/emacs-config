@@ -16,32 +16,38 @@
 (setq dotfiles-dir (expand-file-name "~/.emacs.d"))
 (add-to-list 'load-path dotfiles-dir)
 
+;; list of packages that are in use (make sure to update if new ones are added!)
+(setq package-list '(auctex auto-complete autopair color-theme
+company helm-gtags helm async markdown-mode mozc pandoc-mode
+popup rainbow-blocks rainbow-delimiters rainbow-identifiers slime
+smart-compile yaml-mode yasnippet zenburn-theme))
+
+;; package archives other than the default
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+			 ("org" . "http://orgmode.org/elpa/")))
+
+
+;; activate all the packages (in particular autoloads)
+(package-initialize)
+
+;; fetch the list of packages available 
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; install the missing packages - should only happen when emacs is installed on
+;; a new system
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
 ;; Stuff downloaded from the package manager. Load all subdirs
 (let ((default-directory (concat dotfiles-dir "/elpa")))
   (normal-top-level-add-to-load-path '("."))
   (normal-top-level-add-subdirs-to-load-path))
 
 (add-to-list 'load-path (concat dotfiles-dir "/custom"))
-
-(let ((default-directory "~/.emacs.d/site-lisp"))
-  (normal-top-level-add-to-load-path '(;"color-theme-6.6.0/"
-				       "auctex"
-				       "auctex/preview"
-				       "anthy" 
-				       ;"auto-complete"
-				       "yasnippet"
-				       "rainbow-delimiters"
-				       "autopair"
-				       "smart-compile"
-				       "cedet"
-				       "popup"
-				       "pandoc"
-				       "org"
-				       "slime"
-				       "markdown"
-				       "yaml-mode"
-				       ;;"mozc"
-				       )))
 
 ;; Load customised stuff
 (require 'ido-custom)
@@ -58,7 +64,7 @@
 (setq org-empty-line-terminates-plain-lists 1)
 (setq org-export-latex-hyperref-format "\\ref{%s}")
 ;(require 'org-special-blocks)
-(defalias 'org-called-interactively-p 'called-interactively-p)
+;(defalias 'org-called-interactively-p 'called-interactively-p)
 
 ;; abbrevs
 (setq abbrev-file-name "~/.emacs.d/custom/abbrevs")
@@ -83,7 +89,6 @@
 
 ;; yasnippet
 (require 'yasnippet)
-(setq yas-snippet-dirs '( "~/.emacs.d/site-lisp/yasnippet/snippets" "~/.emacs.d/snippets"))
 ; use ido as the default expansion selection
 (setq yas-prompt-functions
       (cons 'yas-ido-prompt
@@ -128,11 +133,7 @@
 			  latex-mode-hook))
   (add-hook auto-fill-hook 'turn-on-auto-fill))
 
-;; package archives other than the default
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
-			 ("org" . "http://orgmode.org/elpa/")))
+
 
 ;; Spell checking
 (setq ispell-program-name "aspell"
@@ -192,15 +193,3 @@
   (set-default-font "Inconsolata-10"))
 (when (equal system-name "sagan")
   (set-default-font "Inconsolata-10"))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(indent-tabs-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
