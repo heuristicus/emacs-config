@@ -28,7 +28,7 @@
 				       "auctex"
 				       "auctex/preview"
 				       "anthy" 
-				       "auto-complete"
+				       ;"auto-complete"
 				       "yasnippet"
 				       "rainbow-delimiters"
 				       "autopair"
@@ -84,6 +84,11 @@
 ;; yasnippet
 (require 'yasnippet)
 (setq yas-snippet-dirs '( "~/.emacs.d/site-lisp/yasnippet/snippets" "~/.emacs.d/snippets"))
+; use ido as the default expansion selection
+(setq yas-prompt-functions
+      (cons 'yas-ido-prompt
+	    (remove 'yas-ido-prompt
+		    yas-prompt-functions)))
 (yas/global-mode 1)
 
 ;; windmove for fast switching between open buffer (shift-arrow)
@@ -91,17 +96,20 @@
   (windmove-default-keybindings))
 
 ;; auto-complete mode
-(require 'auto-complete-custom)
-(dolist (ac-hook '(emacs-lisp-mode-hook 
-		   haskell-mode-hook 
-		   python-mode-hook 
-		   c-mode-hook
-		   c++-mode-hook
-		   lisp-mode-hook
-		   java-mode-hook 
-		   latex-mode-hook))
-  (add-hook ac-hook 'auto-complete-mode))
+;; (require 'auto-complete-custom)
+;; (dolist (ac-hook '(emacs-lisp-mode-hook 
+;; 		   haskell-mode-hook 
+;; 		   python-mode-hook 
+;; 		   c-mode-hook
+;; 		   c++-mode-hook
+;; 		   lisp-mode-hook
+;; 		   java-mode-hook 
+;; 		   latex-mode-hook))
+;;   (add-hook ac-hook 'auto-complete-mode))
 
+;; company mode
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Rainbow delimiters
 (require 'rainbow-delimiters)
@@ -184,3 +192,15 @@
   (set-default-font "Inconsolata-10"))
 (when (equal system-name "sagan")
   (set-default-font "Inconsolata-10"))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(indent-tabs-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

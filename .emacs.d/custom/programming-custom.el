@@ -11,9 +11,16 @@
 (require 'smart-compile)
 (defun my-c-hook ()
   (setq c-default-style "k&r")
-  (c-toggle-auto-newline 1)
+  (c-toggle-auto-newline 0)
   (setq c-basic-offset 4)
   (c-toggle-auto-hungry-state 1))
+
+(setq c-auto-newline nil)
+
+;; quick switching between header and cpp
+(add-hook 'c-mode-common-hook
+  (lambda()
+    (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
 
 (add-to-list 'smart-compile-alist '("\\.c$" . "gcc -g -Wall -Werror -o %n %f"))
 
@@ -31,18 +38,18 @@
  )
 
 ;; enable subword mode for programming buffers
-(dolist (sw-hook '(emacs-lisp-mode-hook 
-		   haskell-mode-hook 
-		   python-mode-hook 
+(dolist (sw-hook '(emacs-lisp-mode-hook
+		   haskell-mode-hook
+		   python-mode-hook
 		   c-mode-hook
 		   c++-mode-hook
 		   lisp-mode-hook
-		   java-mode-hook 
+		   java-mode-hook
 		   latex-mode-hook))
   (add-hook sw-hook 'subword-mode))
 
-;; (global-set-key (kbd "C-c i") 'helm-semantic-or-imenu)
-;; (global-set-key (kbd "C-c m") 'helm-man-woman)
+(global-set-key (kbd "C-c i") 'helm-semantic-or-imenu)
+(global-set-key (kbd "C-c m") 'helm-man-woman)
 
 ;; Enable helm-gtags-mode
 (add-hook 'dired-mode-hook 'helm-gtags-mode)
@@ -62,25 +69,13 @@
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
 
 ;; cedet
-;; (load-file (concat dotfiles-dir "/site-lisp/cedet/cedet-1.1/common/cedet.el"))
-;; (require 'semantic-gcc)
-;; (require 'semantic/ia)
-;; (when (cedet-gnu-global-version-check t)
-;;   (semanticdb-enable-gnu-global-databases 'c-mode)
-;;   (semanticdb-enable-gnu-global-databases 'c++-mode))
-;; (semantic-load-enable-code-helpers)
-;; (global-ede-mode 1)
-;; (defun my-cedet-hook ()
-;;   (local-set-key (kbd "C-;") 'semantic-ia-complete-symbol-menu)
-;;   (local-set-key (kbd "C-.") 'semantic-complete-analyze-inline)
-;;   (local-set-key (kbd "C-c p") 'semantic-analyze-proto-impl-toggle))
-;; (add-hook 'c-mode-common-hook 'my-cedet-hook)
-;; (defun my-c-mode-cedet-hook ()
-;;   (local-set-key (kbd ".") 'semantic-complete-self-insert)
-;;   (local-set-key (kbd ">") 'semantic-complete-self-insert)
-;;   (add-to-list 'ac-sources 'ac-source-gtags)
-;;   (add-to-list 'ac-sources 'ac-source-semantic))
-;; (add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
+(require 'cc-mode)
+(require 'semantic)
+
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
+
+(semantic-mode 1)
 
 ;;Hide compilation window on success
 (winner-mode 1)
@@ -101,6 +96,13 @@
 (require 'slime)
 (slime-setup '(slime-fancy
 	       slime-indentation))
+
+;; Doxygen 
+(add-hook 'c-mode-common-hook
+  (lambda ()
+    (require 'doxymacs)
+    (doxymacs-mode t)
+    (doxymacs-font-lock)))
 
 ;; put emacs into octave-mode when a matlab file is read.
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))

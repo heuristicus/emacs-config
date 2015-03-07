@@ -104,6 +104,7 @@
     ("kalman" "Kalman" nil 15)
     ("kf" "KF" nil 1)
     ("kfl" "Kalman filter" nil 11)
+    ("knn" "($k$-NN)" nil 1)
     ("mog" "mixture of Gaussians" nil 4)
     ("pf" "PF" nil 0)
     ("pfl" "particle filter" nil 8)

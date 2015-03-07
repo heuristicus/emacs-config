@@ -1,6 +1,6 @@
 (require 'auto-complete)
 (require 'auto-complete-config)
-(ac-config-default)
+;; (ac-config-default)
 
 ;; (setq-default ac-sources '(ac-source-dictionary ac-source-abbrev ac-source-words-in-same-mode-buffers))
 ;; (setq-default ac-auto-start 5)
@@ -22,5 +22,7 @@
 ;; (add-hook 'python-mode-hook 'auto-complete-mode)
 ;; (add-hook 'haskell-mode-hook 'auto-complete-mode)
 ;; (add-hook 'c-mode-common-hook 'auto-complete-mode)
+
+;; (setq ac-auto-start t)
 
 (provide 'auto-complete-custom)
