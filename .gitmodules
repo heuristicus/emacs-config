@@ -1,0 +1,3 @@
+[submodule "snippets/jinja2-mode"]
+	path = snippets/jinja2-mode
+	url = git@github.com:Singletoned/yasnippet-jinja.git
