@@ -1,4 +1,5 @@
 (require 'helm-config)
+(require 'helm-ag)
 
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
 
@@ -22,5 +23,14 @@
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-c h o") 'helm-occur)
+(global-set-key (kbd "C-c s") 'helm-ag-this-file)
+(global-set-key (kbd "C-;") 'helm-mini)
+
+(define-key helm-map (kbd "C-h") 'delete-backward-char)
+(eval-after-load "helm-files"
+  '(let ((helm-find-files-C-h-map (lookup-key helm-find-files-map (kbd "C-h"))))
+     (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)))
+
+
 
 (provide 'helm-custom)

@@ -1,10 +1,11 @@
 (global-set-key (kbd "<f2> k") 'japanese-katakana-region)
 (global-set-key (kbd "<f2> r") 'replace-string)
 (global-set-key (kbd "<f2> R") 'query-replace)
-(global-set-key (kbd "<f2> e") 'eval-buffer)
+(global-set-key (kbd "<f2> E") 'eval-buffer)
+(global-set-key (kbd "<f2> e") 'eval-region)
 (global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-c - C-c") 'uncomment-region)
-(global-set-key (kbd "C-c s") 'shell)
+;; (global-set-key (kbd "C-c s") 'shell)
 ;; dirty fix for ctrl-replaced caps key setting marks with these commands
 (global-set-key (kbd "C-S-n") 'next-line)
 (global-set-key (kbd "C-S-p") 'previous-line)
@@ -19,6 +20,25 @@
 
 (global-set-key (kbd "M-n") 'scroll-other-window)
 (global-set-key (kbd "M-p") 'scroll-other-window-down)
+(global-set-key (kbd "C-?") 'help-command)
+(global-set-key (kbd "M-?") 'mark-paragraph)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "M-h") 'backward-kill-word)
+(global-set-key (kbd "<return>") 'ignore)
+(global-set-key (kbd "<backspace>") 'ignore)
+(global-set-key (kbd "C-.") 'company-complete)
+;; (global-set-key (kbd "C-i") 'other-window)
+;; (defun frame-bck()
+;;   (interactive)
+;;   (other-window -1)
+;; )
+;; (global-set-key (kbd "C-u") 'frame-bck)
+
+(defun programming-mode-keys ()
+  (local-set-key (kbd "<return>") 'ignore)
+  (local-set-key (kbd "<backspace>") 'ignore))
+
+(add-hook 'c++-mode-hook 'programming-mode-keys)
 
 ;; (defvar fringes-set nil)
 

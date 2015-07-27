@@ -11,11 +11,10 @@
 (require 'smart-compile)
 (defun my-c-hook ()
   (setq c-default-style "k&r")
-  (c-toggle-auto-newline 0)
+  (setq c-auto-newline -1)
+  (setq c-toggle-auto-newline -1)
   (setq c-basic-offset 4)
-  (c-toggle-auto-hungry-state 1))
-
-(setq c-auto-newline nil)
+  (setq c-toggle-auto-hungry-state 1))
 
 ;; quick switching between header and cpp
 (add-hook 'c-mode-common-hook
@@ -26,16 +25,16 @@
 
 (add-hook 'c-mode-common-hook 'my-c-hook)
 
-(require 'helm-gtags)
-;; helm gtags
-(setq
- helm-gtags-ignore-case t
- helm-gtags-auto-update t
- helm-gtags-use-input-at-cursor t
- helm-gtags-pulse-at-cursor t
- helm-gtags-prefix-key "\C-c"
- helm-gtags-suggested-key-mapping t
- )
+;; (require 'helm-gtags)
+;; ;; helm gtags
+;; (setq
+;;  helm-gtags-ignore-case t
+;;  helm-gtags-auto-update t
+;;  helm-gtags-use-input-at-cursor t
+;;  helm-gtags-pulse-at-cursor t
+;;  helm-gtags-prefix-key "\C-c"
+;;  helm-gtags-suggested-key-mapping t
+;;  )
 
 ;; enable subword mode for programming buffers
 (dolist (sw-hook '(emacs-lisp-mode-hook
@@ -52,18 +51,18 @@
 (global-set-key (kbd "C-c m") 'helm-man-woman)
 
 ;; Enable helm-gtags-mode
-(add-hook 'dired-mode-hook 'helm-gtags-mode)
-(add-hook 'eshell-mode-hook 'helm-gtags-mode)
-(add-hook 'c-mode-hook 'helm-gtags-mode)
-(add-hook 'c++-mode-hook 'helm-gtags-mode)
-(add-hook 'asm-mode-hook 'helm-gtags-mode)
+;; (add-hook 'dired-mode-hook 'helm-gtags-mode)
+;; (add-hook 'eshell-mode-hook 'helm-gtags-mode)
+;; (add-hook 'c-mode-hook 'helm-gtags-mode)
+;; (add-hook 'c++-mode-hook 'helm-gtags-mode)
+;; (add-hook 'asm-mode-hook 'helm-gtags-mode)
 
-(define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
-(define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-select)
-(define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
-(define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
-(define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
-(define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+;; (define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
+;; (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-select)
+;; (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+;; (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
+;; (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+;; (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
 
 ;; cuda syntax highlighting
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
@@ -106,5 +105,12 @@
 
 ;; put emacs into octave-mode when a matlab file is read.
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
+
+;; use projectile
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+(setq projectile-enable-caching t)
+
 
 (provide 'programming-custom)

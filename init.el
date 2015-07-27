@@ -17,10 +17,12 @@
 (add-to-list 'load-path dotfiles-dir)
 
 ;; list of packages that are in use (make sure to update if new ones are added!)
-(setq package-list '(auctex auto-complete autopair color-theme
-company helm-gtags helm async markdown-mode mozc pandoc-mode
-popup rainbow-blocks rainbow-delimiters rainbow-identifiers slime
-smart-compile yaml-mode yasnippet zenburn-theme))
+;; find this list using C-? v package-activated-list
+(setq package-list '(helm-projectile projectile auctex
+		     auto-complete autopair color-theme company helm-gtags helm async
+		     markdown-mode mozc pandoc-mode popup rainbow-blocks
+		     rainbow-delimiters rainbow-identifiers slime smart-compile
+		     yaml-mode yasnippet zenburn-theme jinja2-mode))
 
 ;; package archives other than the default
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -53,11 +55,17 @@ smart-compile yaml-mode yasnippet zenburn-theme))
 (require 'ido-custom)
 (require 'color-theme-custom)
 (require 'latex-custom)
-(require 'keybind-custom)
+
 (require 'helm-custom)
 ;(require 'jp-input-custom)
 (require 'extras-custom) ; transparency
 (require 'programming-custom)
+
+;; Move on visual lines as opposed to actual lines
+(setq line-move-visual t)
+
+;; Automatically revert a file once changed
+(global-auto-revert-mode 1)
 
 ;; org mode stuff
 (setq org-completion-use-ido 1)
@@ -115,6 +123,8 @@ smart-compile yaml-mode yasnippet zenburn-theme))
 ;; company mode
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
+(setq company-idle-delay 0.4)
+(global-set-key (kbd "C-.") 'company-complete)
 
 ;; Rainbow delimiters
 (require 'rainbow-delimiters)
@@ -193,3 +203,8 @@ smart-compile yaml-mode yasnippet zenburn-theme))
   (set-default-font "Inconsolata-10"))
 (when (equal system-name "sagan")
   (set-default-font "Inconsolata-10"))
+
+;; load some keybinding stuff last so that it is not overwritten
+(require 'keybind-custom)
+(global-set-key (kbd "<return>") 'ignore)
+(global-set-key (kbd "<backspace>") 'ignore)
