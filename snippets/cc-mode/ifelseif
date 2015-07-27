@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: if (cond1) { .. } else if (cond2) { .. } else { .. }
+# key: ifif
+# --
+if (${1:cond1}) {
+    $2
+} else if (${3:cond2}) {
+    $4
+} else {
+    $0
+}
