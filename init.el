@@ -185,6 +185,10 @@
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 
+;; save sessions
+(desktop-save-mode 1)
+;; save the desktop whenever a new file is opened
+(add-hook 'find-file-hook (lambda () (desktop-save "~/.emacs.d")))
 
 ;; Prevent pausing on C-z
 (global-unset-key (kbd "C-z"))
