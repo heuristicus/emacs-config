@@ -2,6 +2,8 @@
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+;; these are annoying
+(setq horizontal-scroll-bar-mode nil)
 
 ;; Minimal fringes
 (set-fringe-mode 1)
@@ -14,15 +16,17 @@
 
 ;; Add the directory containing .el files to the load path
 (setq dotfiles-dir (expand-file-name "~/.emacs.d"))
-(add-to-list 'load-path dotfiles-dir)
 
 ;; list of packages that are in use (make sure to update if new ones are added!)
 ;; find this list using C-? v package-activated-list
-(setq package-list '(helm-projectile projectile auctex
-		     auto-complete autopair color-theme company helm-gtags helm async
-		     markdown-mode mozc pandoc-mode popup rainbow-blocks
-		     rainbow-delimiters rainbow-identifiers slime smart-compile
-		     yaml-mode yasnippet zenburn-theme jinja2-mode))
+(setq package-list '(helm helm-projectile projectile auctex
+		     auto-complete autopair color-theme company
+		     helm-gtags helm-ag async markdown-mode
+		     markdown-preview-mode mozc pandoc-mode popup
+		     rainbow-blocks rainbow-delimiters
+		     rainbow-identifiers slime smart-compile
+		     yaml-mode yasnippet zenburn-theme
+		     jinja2-mode))
 
 ;; package archives other than the default
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -55,24 +59,20 @@
 (require 'ido-custom)
 (require 'color-theme-custom)
 (require 'latex-custom)
+(require 'tramp-custom)
+(require 'org-custom)
 
 (require 'helm-custom)
 ;(require 'jp-input-custom)
 (require 'extras-custom) ; transparency
 (require 'programming-custom)
+(require 'keybind-custom)
 
 ;; Move on visual lines as opposed to actual lines
 (setq line-move-visual t)
 
 ;; Automatically revert a file once changed
 (global-auto-revert-mode 1)
-
-;; org mode stuff
-(setq org-completion-use-ido 1)
-(setq org-empty-line-terminates-plain-lists 1)
-(setq org-export-latex-hyperref-format "\\ref{%s}")
-;(require 'org-special-blocks)
-;(defalias 'org-called-interactively-p 'called-interactively-p)
 
 ;; abbrevs
 (setq abbrev-file-name "~/.emacs.d/custom/abbrevs")
@@ -121,10 +121,10 @@
 ;;   (add-hook ac-hook 'auto-complete-mode))
 
 ;; company mode
-(require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
-(setq company-idle-delay 0.4)
-(global-set-key (kbd "C-.") 'company-complete)
+;; (require 'company)
+;; (add-hook 'after-init-hook 'global-company-mode)
+;; (setq company-idle-delay 0.4)
+;; (global-set-key (kbd "C-.") 'company-complete)
 
 ;; Rainbow delimiters
 (require 'rainbow-delimiters)
@@ -186,9 +186,13 @@
 (setq show-paren-delay 0)
 
 ;; save sessions
+(require 'desktop)
+(setq desktop-dirname "~/.emacs.d")
+(setq desktop-path (list desktop-dirname))
+(setq desktop-base-file-name (concat system-name ".desktop"))
+(setq desktop-auto-save-timeout 10) ;; save every 30 mins?
+(setq desktop-save t)
 (desktop-save-mode 1)
-;; save the desktop whenever a new file is opened
-(add-hook 'find-file-hook (lambda () (desktop-save "~/.emacs.d")))
 
 ;; Prevent pausing on C-z
 (global-unset-key (kbd "C-z"))
@@ -202,13 +206,10 @@
 ;; Start emacs server
 (server-start)
 
-;; set font sizes for different computers
-(when (equal system-name "russell")
-  (set-default-font "Inconsolata-10"))
-(when (equal system-name "sagan")
-  (set-default-font "Inconsolata-10"))
+
+(setq reb-re-syntax 'string) ; regex builder syntax-after
 
 ;; load some keybinding stuff last so that it is not overwritten
-(require 'keybind-custom)
 (global-set-key (kbd "<return>") 'ignore)
 (global-set-key (kbd "<backspace>") 'ignore)
+(require 'keybind-custom)

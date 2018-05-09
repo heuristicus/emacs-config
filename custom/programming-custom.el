@@ -10,10 +10,10 @@
 ;; c mode
 (require 'smart-compile)
 (defun my-c-hook ()
-  (setq c-default-style "k&r")
+  (setq c-default-style "linux")
   (setq c-auto-newline -1)
   (setq c-toggle-auto-newline -1)
-  (setq c-basic-offset 4)
+  (setq c-basic-offset 2)
   (setq c-toggle-auto-hungry-state 1))
 
 ;; quick switching between header and cpp
@@ -40,6 +40,7 @@
 (dolist (sw-hook '(emacs-lisp-mode-hook
 		   haskell-mode-hook
 		   python-mode-hook
+		   c-mode-common-hook
 		   c-mode-hook
 		   c++-mode-hook
 		   lisp-mode-hook

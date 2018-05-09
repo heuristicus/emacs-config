@@ -20,12 +20,18 @@
 
 (global-set-key (kbd "M-n") 'scroll-other-window)
 (global-set-key (kbd "M-p") 'scroll-other-window-down)
-(global-set-key (kbd "C-?") 'help-command)
+(global-set-key (kbd "C-x ?") 'help-command)
 (global-set-key (kbd "M-?") 'mark-paragraph)
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'backward-kill-word)
-(global-set-key (kbd "<return>") 'ignore)
-(global-set-key (kbd "<backspace>") 'ignore)
+
+(defun c-h-config ()
+  (local-set-key (kbd "M-h") 'backward-kill-word)
+  (local-set-key (kbd "C-h") 'delete-backward-char))
+
+(add-hook 'org-mode-hook 'c-h-config)
+(add-hook 'nxml-mode-hook 'c-h-config)
+(add-hook 'octave-mode-hook 'c-h-config)
 (global-set-key (kbd "C-.") 'company-complete)
 ;; (global-set-key (kbd "C-i") 'other-window)
 ;; (defun frame-bck()
@@ -33,12 +39,6 @@
 ;;   (other-window -1)
 ;; )
 ;; (global-set-key (kbd "C-u") 'frame-bck)
-
-(defun programming-mode-keys ()
-  (local-set-key (kbd "<return>") 'ignore)
-  (local-set-key (kbd "<backspace>") 'ignore))
-
-(add-hook 'c++-mode-hook 'programming-mode-keys)
 
 ;; (defvar fringes-set nil)
 
