@@ -9,5 +9,5 @@
 ;(require 'org-special-blocks)
 ;(defalias 'org-called-interactively-p 'called-interactively-p)
 (global-set-key "\C-ca" 'org-agenda)
-
+(setq org-duration-format (quote h:mm))
 (provide 'org-custom)
